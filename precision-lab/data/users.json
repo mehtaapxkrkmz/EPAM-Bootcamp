@@ -1,0 +1,32 @@
+[
+  {
+    "id": "95399c3f-ad7a-4800-a25c-4e3ef4a638ff",
+    "email": "mehtapxkrkmz6@gmail.com",
+    "password_hash": "$2a$12$CGSxc9qjosXknn6Pwim7Z.cEOu7X6QDIbRg3M.IoBbeooJVSmuSKO",
+    "failed_login_attempts": 0,
+    "locked_until": null,
+    "created_at": "2026-05-04T20:39:37.867Z",
+    "reset_token_hash": "256e3dc74c38235e4c834af02933a2fd2492d1e0766994156723e3aab69d1fae",
+    "reset_token_expires_at": "2026-05-04T21:09:53.972Z"
+  },
+  {
+    "id": "2d30b47e-c866-4ad1-bd36-1bb60179a3a8",
+    "email": "mehtapxkrkmz@gmail.com",
+    "password_hash": "$2a$12$j8F8ZmcZqL9kHUUp8agYiuDzENsA07d3m592UnV50P1J3mJIHBL7i",
+    "failed_login_attempts": 0,
+    "locked_until": null,
+    "created_at": "2026-05-04T20:40:47.760Z",
+    "reset_token_hash": null,
+    "reset_token_expires_at": null
+  },
+  {
+    "id": "124a0df6-b741-4e78-8404-649e8af42eda",
+    "email": "mehtapxkrkmz9@gmail.com",
+    "password_hash": "$2a$12$Du5XKW/pY2zdECzrYHRdGOhRz5VhuCZWwVb6QPkVCjM71/zwnmCN6",
+    "failed_login_attempts": 0,
+    "locked_until": null,
+    "created_at": "2026-05-04T20:41:55.294Z",
+    "reset_token_hash": null,
+    "reset_token_expires_at": null
+  }
+]

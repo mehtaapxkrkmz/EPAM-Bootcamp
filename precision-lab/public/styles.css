@@ -1,0 +1,259 @@
+:root {
+  --bg-1: #f6f3ed;
+  --bg-2: #e8f0ff;
+  --ink: #222129;
+  --ink-muted: #5d6170;
+  --accent: #0c7a6c;
+  --accent-strong: #005f53;
+  --accent-soft: #d6f5ef;
+  --card: #ffffff;
+  --error: #b42318;
+  --ok: #12704d;
+  --shadow: 0 24px 60px rgba(24, 28, 36, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Outfit", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 12% 18%, #f9d7b8 0%, transparent 28%),
+    radial-gradient(circle at 82% 20%, #c8e2ff 0%, transparent 30%),
+    linear-gradient(150deg, var(--bg-1), var(--bg-2));
+  overflow-x: hidden;
+}
+
+.background-glow {
+  position: fixed;
+  inset: auto -10% -26% -10%;
+  height: 420px;
+  background: radial-gradient(circle, rgba(12, 122, 108, 0.22) 0%, rgba(12, 122, 108, 0) 68%);
+  pointer-events: none;
+  animation: breathe 7s ease-in-out infinite;
+}
+
+.auth-layout {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.4rem;
+}
+
+.brand-panel {
+  padding-right: 1rem;
+  animation: fadeSlideIn 700ms ease;
+}
+
+.eyebrow {
+  margin: 0 0 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent-strong);
+  font-weight: 600;
+  font-size: 0.74rem;
+}
+
+.brand-panel h1 {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2rem, 3.4vw, 3.3rem);
+  line-height: 1.08;
+}
+
+.brand-panel p {
+  max-width: 460px;
+  margin-top: 1.2rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  font-size: 1.04rem;
+}
+
+.card {
+  background: color-mix(in srgb, var(--card) 88%, #eaf6ff);
+  border: 1px solid rgba(19, 29, 41, 0.08);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+  backdrop-filter: blur(5px);
+  animation: fadeSlideIn 900ms ease;
+}
+
+.tab-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.tab {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.78rem 0.9rem;
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+  color: var(--ink-muted);
+  background: #f0f4fa;
+  cursor: pointer;
+  transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
+}
+
+.tab:hover {
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.form {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #273143;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid rgba(18, 25, 35, 0.16);
+  border-radius: 12px;
+  padding: 0.84rem 0.9rem;
+  font-size: 0.98rem;
+  font-family: "Outfit", sans-serif;
+  background: #ffffff;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(12, 122, 108, 0.16);
+}
+
+.submit-button,
+.secondary-button {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.88rem 1rem;
+  font-weight: 700;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.97rem;
+  cursor: pointer;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.submit-button {
+  margin-top: 0.22rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.submit-button:hover,
+.secondary-button:hover {
+  transform: translateY(-1px);
+}
+
+.secondary-button {
+  color: var(--accent-strong);
+  background: #eaf8f5;
+}
+
+.message {
+  min-height: 1.2rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.message.error {
+  color: var(--error);
+}
+
+.message.success {
+  color: var(--ok);
+}
+
+.profile-card {
+  margin-top: 1rem;
+  padding: 0.95rem;
+  border-radius: 14px;
+  background: #f7fbff;
+  border: 1px solid rgba(20, 62, 94, 0.12);
+  display: grid;
+  gap: 0.65rem;
+}
+
+.profile-card h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.profile-card p {
+  margin: 0;
+  color: #2e435f;
+  line-height: 1.45;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 0.7;
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 920px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    align-content: center;
+  }
+
+  .brand-panel {
+    padding-right: 0;
+  }
+
+  .brand-panel p {
+    max-width: none;
+  }
+}

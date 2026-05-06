@@ -1,0 +1,154 @@
+:root {
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  color: #102132;
+  background: radial-gradient(circle at top, #f5fbff 0%, #e7f0f8 45%, #dde7f0 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.app-header p {
+  margin-top: 0.5rem;
+  color: #3f5468;
+}
+
+.task-form {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.task-form input {
+  flex: 1 1 260px;
+  border: 1px solid #c5d4e1;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+.task-form input:focus {
+  border-color: #2b82d9;
+  box-shadow: 0 0 0 3px rgba(43, 130, 217, 0.15);
+}
+
+button {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+  font-weight: 600;
+  background: #2b82d9;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.95);
+}
+
+.board-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.board-column {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid #cad8e4;
+  border-radius: 16px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-head {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid #d6e2ec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.column-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.column-head span {
+  background: #dbeafa;
+  color: #0e4e88;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.55rem;
+}
+
+.column-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  min-height: 280px;
+}
+
+.task-card {
+  background: #ffffff;
+  border: 1px solid #d5e0ea;
+  border-radius: 12px;
+  padding: 0.8rem;
+  box-shadow: 0 7px 16px rgba(8, 33, 52, 0.08);
+}
+
+.task-card p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.task-actions {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.task-actions button {
+  background: #edf4fb;
+  color: #0f3f66;
+  border-color: #c8dcf0;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.55rem;
+}
+
+.task-actions .danger {
+  background: #fee9e7;
+  color: #8b261f;
+  border-color: #f7ccc6;
+}
+
+@media (max-width: 930px) {
+  .board-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .board-column {
+    min-height: 260px;
+  }
+}
