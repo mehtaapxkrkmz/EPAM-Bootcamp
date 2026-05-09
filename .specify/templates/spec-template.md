@@ -95,6 +95,16 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
+### Quality & Compliance Requirements *(mandatory)*
+
+- **QR-001**: TypeScript deliverables MUST use `strict: true` with no permanent
+  relaxation of strictness checks.
+- **QR-002**: Test design MUST follow the testing pyramid (unit > integration >
+  e2e) and identify business-logic coverage scope.
+- **QR-003**: Business-logic code MUST achieve at least 80% line coverage in CI.
+- **QR-004**: All public APIs and business-logic units introduced or changed by
+  this feature MUST include updated JSDoc comments.
+
 ### Key Entities *(include if feature involves data)*
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]

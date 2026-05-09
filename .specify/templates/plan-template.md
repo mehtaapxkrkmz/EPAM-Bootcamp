@@ -31,7 +31,16 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Clean Code First: Plan identifies module boundaries, naming standards, and
+  refactor scope to avoid duplication and dead code.
+- TypeScript Strict Mode: Technical context confirms TypeScript with
+  `strict: true`; no permanent strictness downgrades are allowed.
+- Testing Pyramid + Coverage: Test strategy states unit/integration/e2e split
+  and defines how business-logic coverage will meet or exceed 80% in CI.
+- JSDoc Requirement: Plan includes task coverage for JSDoc on all public APIs
+  and business-logic code impacted by the feature.
+- Change Size Control: Plan decomposes work into reviewable increments with
+  clear validation checkpoints.
 
 ## Project Structure
 
