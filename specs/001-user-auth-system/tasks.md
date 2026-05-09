@@ -14,16 +14,16 @@
 
 **Purpose**: Project initialization and basic structure for TypeScript/Express development
 
-- [ ] T001 Create project directory structure per plan.md (src/, tests/, db/, .specify/) in repository root
-- [ ] T002 [P] Initialize Node.js project with package.json dependencies: express, typescript, jest, ts-jest, pg, jsonwebtoken, bcrypt, nodemailer, cors, dotenv
-- [ ] T003 [P] Configure TypeScript with strict: true in tsconfig.json (no any types except documented exceptions)
-- [ ] T004 [P] Configure ESLint and Prettier for code formatting and linting
-- [ ] T005 [P] Configure Jest 29+ with ts-jest in jest.config.js and set coverage threshold to 80% for src/services/*, src/models/*
-- [ ] T006 [P] Create npm scripts: test:unit, test:integration, test:coverage, dev, build, type-check, lint, format
-- [ ] T007 [P] Setup GitHub Actions CI pipeline to enforce TypeScript strict mode, linting, and 80% coverage gate
-- [ ] T008 [P] Create .env.example with template variables (DB_URL, JWT_SECRET, BCRYPT_ROUNDS, EMAIL_PROVIDER, etc.)
-- [ ] T009 Create src/lib/config.ts to load and validate environment configuration at startup
-- [ ] T010 Create src/lib/logger.ts with structured logging and correlation ID support for audit trail
+- [X] T001 Create project directory structure per plan.md (src/, tests/, db/, .specify/) in repository root
+- [X] T002 [P] Initialize Node.js project with package.json dependencies: express, typescript, jest, ts-jest, pg, jsonwebtoken, bcrypt, nodemailer, cors, dotenv
+- [X] T003 [P] Configure TypeScript with strict: true in tsconfig.json (no any types except documented exceptions)
+- [X] T004 [P] Configure ESLint and Prettier for code formatting and linting
+- [X] T005 [P] Configure Jest 29+ with ts-jest in jest.config.js and set coverage threshold to 80% for src/services/*, src/models/*
+- [X] T006 [P] Create npm scripts: test:unit, test:integration, test:coverage, dev, build, type-check, lint, format
+- [X] T007 [P] Setup GitHub Actions CI pipeline to enforce TypeScript strict mode, linting, and 80% coverage gate
+- [X] T008 [P] Create .env.example with template variables (DB_URL, JWT_SECRET, BCRYPT_ROUNDS, EMAIL_PROVIDER, etc.)
+- [X] T009 Create src/lib/config.ts to load and validate environment configuration at startup
+- [X] T010 Create src/lib/logger.ts with structured logging and correlation ID support for audit trail
 
 ---
 
@@ -33,19 +33,19 @@
 
 **⚠️ CRITICAL**: No user story implementation can begin until this phase is complete
 
-- [ ] T011 [P] Create database migration framework (Flyway or Knex) setup in db/migrations/ directory
-- [ ] T012 [P] Create src/lib/db.ts with PostgreSQL connection pool initialization and health check
-- [ ] T013 [P] Create database migration 001-create-users.sql (users table schema per data-model.md) in db/migrations/
-- [ ] T014 [P] Create database migration 002-create-sessions.sql (sessions table with jti, revocation support per data-model.md) in db/migrations/
-- [ ] T015 [P] Create database migration 003-create-reset-requests.sql (reset_requests table with 15-min expiry per data-model.md) in db/migrations/
-- [ ] T016 [P] Create database migration 004-create-auth-events.sql (auth_events table with correlation IDs per data-model.md) in db/migrations/
-- [ ] T017 [P] Create CryptoService in src/services/CryptoService.ts with password hashing (bcrypt ≥10 rounds), JWT signing/verification, token hash generation; include JSDoc for all methods
-- [ ] T018 [P] Create EmailService in src/services/EmailService.ts with nodemailer integration, retry queue (up to 3 attempts), generic success responses; include JSDoc
-- [ ] T019 [P] Create src/middleware/errorHandler.ts to format all error responses (non-sensitive, include correlation_id, error code, message, status)
-- [ ] T020 [P] Create src/lib/types.ts with TypeScript interfaces for User, Session, ResetRequest, AuthEvent, and API request/response types
-- [ ] T021 Create src/app.ts with Express app initialization, middleware registration (cors, json, error handler), route mounting
-- [ ] T022 Create src/server.ts with server bootstrap (app listen on API_PORT, database connection)
-- [ ] T023 [P] Create test fixtures in tests/fixtures/users.ts and tests/fixtures/db.ts for test data factories and database setup/teardown
+- [X] T011 [P] Create database migration framework (Flyway or Knex) setup in db/migrations/ directory
+- [X] T012 [P] Create src/lib/db.ts with PostgreSQL connection pool initialization and health check
+- [X] T013 [P] Create database migration 001-create-users.sql (users table schema per data-model.md) in db/migrations/
+- [X] T014 [P] Create database migration 002-create-sessions.sql (sessions table with jti, revocation support per data-model.md) in db/migrations/
+- [X] T015 [P] Create database migration 003-create-reset-requests.sql (reset_requests table with 15-min expiry per data-model.md) in db/migrations/
+- [X] T016 [P] Create database migration 004-create-auth-events.sql (auth_events table with correlation IDs per data-model.md) in db/migrations/
+- [X] T017 [P] Create CryptoService in src/services/CryptoService.ts with password hashing (bcrypt ≥10 rounds), JWT signing/verification, token hash generation; include JSDoc for all methods
+- [X] T018 [P] Create EmailService in src/services/EmailService.ts with nodemailer integration, retry queue (up to 3 attempts), generic success responses; include JSDoc
+- [X] T019 [P] Create src/middleware/errorHandler.ts to format all error responses (non-sensitive, include correlation_id, error code, message, status)
+- [X] T020 [P] Create src/lib/types.ts with TypeScript interfaces for User, Session, ResetRequest, AuthEvent, and API request/response types
+- [X] T021 Create src/app.ts with Express app initialization, middleware registration (cors, json, error handler), route mounting
+- [X] T022 Create src/server.ts with server bootstrap (app listen on API_PORT, database connection)
+- [X] T023 [P] Create test fixtures in tests/fixtures/users.ts and tests/fixtures/db.ts for test data factories and database setup/teardown
 
 **Checkpoint**: Foundation complete - user story implementation can now begin in parallel
 
@@ -69,27 +69,27 @@
 
 > **NOTE**: Write these tests FIRST, ensure they FAIL before implementation
 
-- [ ] T024 [P] [US1] Create unit tests for password validation in tests/unit/PasswordValidation.test.ts (12+ chars, upper/lowercase/number/symbol)
-- [ ] T025 [P] [US1] Create unit tests for progressive lockout logic in tests/unit/ProgressiveLockout.test.ts (5 failures → 15-min lock, escalation)
-- [ ] T026 [P] [US1] Create unit tests for JWT issuance and validation in tests/unit/CryptoService.test.ts (HS256 signing, token structure, expiry checks)
-- [ ] T027 [P] [US1] Create unit tests for session record creation and lookup in tests/unit/SessionManager.test.ts (jti uniqueness, expiry, revocation checks)
-- [ ] T028 [US1] Create integration test for user registration flow in tests/integration/auth.flows.test.ts (valid registration, duplicate prevention, email validation)
-- [ ] T029 [US1] Create integration test for user login flow in tests/integration/auth.flows.test.ts (correct credentials, wrong credentials, progressive lockout, JWT issuance)
-- [ ] T030 [US1] Create integration test for protected resource access in tests/integration/auth.flows.test.ts (valid JWT grant, expired JWT denial, missing JWT denial)
+- [X] T024 [P] [US1] Create unit tests for password validation in tests/unit/PasswordValidation.test.ts (12+ chars, upper/lowercase/number/symbol)
+- [X] T025 [P] [US1] Create unit tests for progressive lockout logic in tests/unit/ProgressiveLockout.test.ts (5 failures → 15-min lock, escalation)
+- [X] T026 [P] [US1] Create unit tests for JWT issuance and validation in tests/unit/CryptoService.test.ts (HS256 signing, token structure, expiry checks)
+- [X] T027 [P] [US1] Create unit tests for session record creation and lookup in tests/unit/SessionManager.test.ts (jti uniqueness, expiry, revocation checks)
+- [X] T028 [US1] Create integration test for user registration flow in tests/integration/auth.flows.test.ts (valid registration, duplicate prevention, email validation)
+- [X] T029 [US1] Create integration test for user login flow in tests/integration/auth.flows.test.ts (correct credentials, wrong credentials, progressive lockout, JWT issuance)
+- [X] T030 [US1] Create integration test for protected resource access in tests/integration/auth.flows.test.ts (valid JWT grant, expired JWT denial, missing JWT denial)
 - [ ] T031 [US1] Verify unit and integration tests achieve ≥80% line coverage for src/services/AuthService.ts, src/services/CryptoService.ts, src/services/SessionManager.ts via npm run test:coverage
 
 ### Implementation for User Story 1
 
-- [ ] T032 [P] [US1] Create User model in src/models/User.ts with properties (id, email, password_hash, status, lockout_until, failed_login_attempts, password_changed_at, created_at, updated_at) and JSDoc
-- [ ] T033 [P] [US1] Create Session model in src/models/Session.ts with properties (id, user_id, jti, token_hash, issued_at, expires_at, revoked_at, ip_address, user_agent) and JSDoc
-- [ ] T034 [US1] Create AuthService in src/services/AuthService.ts with methods: registerUser(), loginUser(), logoutUser(), validateCredentials(), enforceProgressiveLockout(); include JSDoc with error contracts
-- [ ] T035 [US1] Create SessionManager in src/services/SessionManager.ts with methods: issueSession(), validateSession(), revokeSession(), checkRevocation(); include JSDoc with type signatures
-- [ ] T036 [P] [US1] Create POST /auth/register endpoint in src/routes/auth.ts with input validation (email format, password policy), duplicate email check, password hashing, user creation (per contracts/auth-api.openapi.yaml)
-- [ ] T037 [P] [US1] Create POST /auth/login endpoint in src/routes/auth.ts with email/password validation, progressive lockout enforcement, session issuance, JWT response (per contracts/auth-api.openapi.yaml)
-- [ ] T038 [P] [US1] Create POST /auth/logout endpoint in src/routes/auth.ts with BearerAuth requirement, session revocation (per contracts/auth-api.openapi.yaml)
-- [ ] T039 [US1] Create src/middleware/authenticate.ts with JWT validation, session revocation check per-request, and correlation ID propagation
-- [ ] T040 [P] [US1] Add registration and login success/failure event logging to AuthService (event_type: registration, login_success, login_failure, lockout_triggered) with correlation IDs in src/services/AuthService.ts
-- [ ] T041 [P] [US1] Add JSDoc to all public methods in src/services/AuthService.ts, src/services/SessionManager.ts, src/services/CryptoService.ts with parameter types, return types, and error cases
+- [X] T032 [P] [US1] Create User model in src/models/User.ts with properties (id, email, password_hash, status, lockout_until, failed_login_attempts, password_changed_at, created_at, updated_at) and JSDoc
+- [X] T033 [P] [US1] Create Session model in src/models/Session.ts with properties (id, user_id, jti, token_hash, issued_at, expires_at, revoked_at, ip_address, user_agent) and JSDoc
+- [X] T034 [US1] Create AuthService in src/services/AuthService.ts with methods: registerUser(), loginUser(), logoutUser(), validateCredentials(), enforceProgressiveLockout(); include JSDoc with error contracts
+- [X] T035 [US1] Create SessionManager in src/services/SessionManager.ts with methods: issueSession(), validateSession(), revokeSession(), checkRevocation(); include JSDoc with type signatures
+- [X] T036 [P] [US1] Create POST /auth/register endpoint in src/routes/auth.ts with input validation (email format, password policy), duplicate email check, password hashing, user creation (per contracts/auth-api.openapi.yaml)
+- [X] T037 [P] [US1] Create POST /auth/login endpoint in src/routes/auth.ts with email/password validation, progressive lockout enforcement, session issuance, JWT response (per contracts/auth-api.openapi.yaml)
+- [X] T038 [P] [US1] Create POST /auth/logout endpoint in src/routes/auth.ts with BearerAuth requirement, session revocation (per contracts/auth-api.openapi.yaml)
+- [X] T039 [US1] Create src/middleware/authenticate.ts with JWT validation, session revocation check per-request, and correlation ID propagation
+- [X] T040 [P] [US1] Add registration and login success/failure event logging to AuthService (event_type: registration, login_success, login_failure, lockout_triggered) with correlation IDs in src/services/AuthService.ts
+- [X] T041 [P] [US1] Add JSDoc to all public methods in src/services/AuthService.ts, src/services/SessionManager.ts, src/services/CryptoService.ts with parameter types, return types, and error cases
 
 **Checkpoint**: User Story 1 complete - registration, login, logout, and JWT validation fully functional and independently testable
 
@@ -115,24 +115,24 @@
 
 > **NOTE**: Write these tests FIRST, ensure they FAIL before implementation
 
-- [ ] T042 [P] [US2] Create unit tests for reset token generation and validation in tests/unit/PasswordResetService.test.ts (15-min expiry, single-use enforcement, token hash)
-- [ ] T043 [P] [US2] Create unit tests for email retry logic in tests/unit/EmailService.test.ts (up to 3 retries, backoff strategy, generic success response)
-- [ ] T044 [P] [US2] Create unit tests for password policy validation in tests/unit/PasswordValidation.test.ts (duplicate scenarios for reset flow)
-- [ ] T045 [US2] Create integration test for password reset request flow in tests/integration/password-reset.test.ts (valid email, non-existent email, generic response, email queueing)
-- [ ] T046 [US2] Create integration test for password reset completion flow in tests/integration/password-reset.test.ts (valid token, expired token, consumed token, new password set, sessions revoked, old credentials fail)
-- [ ] T047 [US2] Create integration test for email retry scenarios in tests/integration/password-reset.test.ts (delivery failure, retry backoff, max retries exhausted)
+- [X] T042 [P] [US2] Create unit tests for reset token generation and validation in tests/unit/PasswordResetService.test.ts (15-min expiry, single-use enforcement, token hash)
+- [X] T043 [P] [US2] Create unit tests for email retry logic in tests/unit/EmailService.test.ts (up to 3 retries, backoff strategy, generic success response)
+- [X] T044 [P] [US2] Create unit tests for password policy validation in tests/unit/PasswordValidation.test.ts (duplicate scenarios for reset flow)
+- [X] T045 [US2] Create integration test for password reset request flow in tests/integration/password-reset.test.ts (valid email, non-existent email, generic response, email queueing)
+- [X] T046 [US2] Create integration test for password reset completion flow in tests/integration/password-reset.test.ts (valid token, expired token, consumed token, new password set, sessions revoked, old credentials fail)
+- [X] T047 [US2] Create integration test for email retry scenarios in tests/integration/password-reset.test.ts (delivery failure, retry backoff, max retries exhausted)
 - [ ] T048 [US2] Verify unit and integration tests achieve ≥80% line coverage for src/services/PasswordResetService.ts, src/services/EmailService.ts via npm run test:coverage
 
 ### Implementation for User Story 2
 
-- [ ] T049 [P] [US2] Create ResetRequest model in src/models/ResetRequest.ts with properties (id, user_id, reset_token_hash, issued_at, expires_at, used_at, redeemed_by_user_id) and JSDoc
-- [ ] T050 [US2] Create PasswordResetService in src/services/PasswordResetService.ts with methods: requestReset(), validateResetToken(), completeReset(), cleanupExpiredTokens(); include JSDoc with error contracts
-- [ ] T051 [P] [US2] Create POST /auth/request-reset endpoint in src/routes/auth.ts with email input, user lookup (no account enumeration), generic success response, email queueing (per contracts/auth-api.openapi.yaml)
-- [ ] T052 [P] [US2] Create POST /auth/reset-password endpoint in src/routes/auth.ts with reset token validation, new password validation, password update, session revocation, JWT invalidation (per contracts/auth-api.openapi.yaml)
-- [ ] T053 [US2] Update AuthService.loginUser() to reject login if password_changed_at > session.issued_at (FR-009: invalidate prior credentials after reset)
-- [ ] T054 [P] [US2] Update EmailService.sendResetEmail() in src/services/EmailService.ts with retry queue logic (up to 3 attempts), backoff strategy, failure logging per FR-007b, FR-012a
-- [ ] T055 [P] [US2] Add password reset event logging to PasswordResetService (event_type: reset_request, reset_completed, reset_email_failed) with correlation IDs in src/services/PasswordResetService.ts
-- [ ] T056 [P] [US2] Add JSDoc to all public methods in src/services/PasswordResetService.ts, src/services/EmailService.ts with parameter types, return types, error cases
+- [X] T049 [P] [US2] Create ResetRequest model in src/models/ResetRequest.ts with properties (id, user_id, reset_token_hash, issued_at, expires_at, used_at, redeemed_by_user_id) and JSDoc
+- [X] T050 [US2] Create PasswordResetService in src/services/PasswordResetService.ts with methods: requestReset(), validateResetToken(), completeReset(), cleanupExpiredTokens(); include JSDoc with error contracts
+- [X] T051 [P] [US2] Create POST /auth/request-reset endpoint in src/routes/auth.ts with email input, user lookup (no account enumeration), generic success response, email queueing (per contracts/auth-api.openapi.yaml)
+- [X] T052 [P] [US2] Create POST /auth/reset-password endpoint in src/routes/auth.ts with reset token validation, new password validation, password update, session revocation, JWT invalidation (per contracts/auth-api.openapi.yaml)
+- [X] T053 [US2] Update AuthService.loginUser() to reject login if password_changed_at > session.issued_at (FR-009: invalidate prior credentials after reset)
+- [X] T054 [P] [US2] Update EmailService.sendResetEmail() in src/services/EmailService.ts with retry queue logic (up to 3 attempts), backoff strategy, failure logging per FR-007b, FR-012a
+- [X] T055 [P] [US2] Add password reset event logging to PasswordResetService (event_type: reset_request, reset_completed, reset_email_failed) with correlation IDs in src/services/PasswordResetService.ts
+- [X] T056 [P] [US2] Add JSDoc to all public methods in src/services/PasswordResetService.ts, src/services/EmailService.ts with parameter types, return types, error cases
 
 **Checkpoint**: User Stories 1 AND 2 complete - account creation, authentication, and password recovery fully functional
 
@@ -157,23 +157,23 @@
 
 > **NOTE**: Write these tests FIRST, ensure they FAIL before implementation
 
-- [ ] T057 [P] [US3] Create unit tests for session expiry enforcement in tests/unit/SessionManager.test.ts (24-hour boundary, clock skew handling, expiry_at validation)
-- [ ] T058 [P] [US3] Create unit tests for per-request session revocation checks in tests/unit/SessionManager.test.ts (revoked_at = null vs timestamp scenarios)
-- [ ] T059 [P] [US3] Create unit tests for concurrent session scenarios in tests/unit/SessionManager.test.ts (multiple sessions per user, independent revocation, cascade revocation on password reset)
-- [ ] T060 [US3] Create integration test for session expiry in tests/integration/session.edge-cases.test.ts (issue token, verify access, skip time, verify access denied, re-login succeeds)
-- [ ] T061 [US3] Create integration test for session revocation (logout, password reset) in tests/integration/session.edge-cases.test.ts (revoke session, verify access denied, verify no cross-device revocation)
-- [ ] T062 [US3] Create integration test for concurrent session scenarios in tests/integration/session.edge-cases.test.ts (multiple devices login, logout one device, other devices unaffected; password reset revokes all)
+- [X] T057 [P] [US3] Create unit tests for session expiry enforcement in tests/unit/SessionManager.test.ts (24-hour boundary, clock skew handling, expiry_at validation)
+- [X] T058 [P] [US3] Create unit tests for per-request session revocation checks in tests/unit/SessionManager.test.ts (revoked_at = null vs timestamp scenarios)
+- [X] T059 [P] [US3] Create unit tests for concurrent session scenarios in tests/unit/SessionManager.test.ts (multiple sessions per user, independent revocation, cascade revocation on password reset)
+- [X] T060 [US3] Create integration test for session expiry in tests/integration/session.edge-cases.test.ts (issue token, verify access, skip time, verify access denied, re-login succeeds)
+- [X] T061 [US3] Create integration test for session revocation (logout, password reset) in tests/integration/session.edge-cases.test.ts (revoke session, verify access denied, verify no cross-device revocation)
+- [X] T062 [US3] Create integration test for concurrent session scenarios in tests/integration/session.edge-cases.test.ts (multiple devices login, logout one device, other devices unaffected; password reset revokes all)
 - [ ] T063 [US3] Verify unit and integration tests achieve ≥80% line coverage for src/services/SessionManager.ts, src/middleware/authenticate.ts via npm run test:coverage
 
 ### Implementation for User Story 3
 
-- [ ] T064 [P] [US3] Update SessionManager.issueSession() in src/services/SessionManager.ts to set expires_at = NOW() + 24 hours per FR-010
-- [ ] T065 [P] [US3] Update SessionManager.validateSession() in src/services/SessionManager.ts to check: (NOW() < session.expires_at) AND (session.revoked_at IS NULL) per FR-010a
-- [ ] T066 [P] [US3] Update src/middleware/authenticate.ts to invoke SessionManager.validateSession() on every protected request (per-request revocation check per FR-010a)
-- [ ] T067 [US3] Update AuthService.logoutUser() in src/services/AuthService.ts to revoke current session (set revoked_at = NOW()) per FR-010a
-- [ ] T068 [US3] Update PasswordResetService.completeReset() in src/services/PasswordResetService.ts to cascade revoke ALL user sessions (set revoked_at = NOW() for all sessions where user_id = ? per FR-009)
-- [ ] T069 [P] [US3] Add session expiry and revocation event logging (event_type: session_revoked) to SessionManager.revokeSession() in src/services/SessionManager.ts with correlation IDs
-- [ ] T070 [P] [US3] Add JSDoc to all updated methods in src/services/SessionManager.ts, src/middleware/authenticate.ts with 24-hour boundary and revocation semantics documented
+- [X] T064 [P] [US3] Update SessionManager.issueSession() in src/services/SessionManager.ts to set expires_at = NOW() + 24 hours per FR-010
+- [X] T065 [P] [US3] Update SessionManager.validateSession() in src/services/SessionManager.ts to check: (NOW() < session.expires_at) AND (session.revoked_at IS NULL) per FR-010a
+- [X] T066 [P] [US3] Update src/middleware/authenticate.ts to invoke SessionManager.validateSession() on every protected request (per-request revocation check per FR-010a)
+- [X] T067 [US3] Update AuthService.logoutUser() in src/services/AuthService.ts to revoke current session (set revoked_at = NOW()) per FR-010a
+- [X] T068 [US3] Update PasswordResetService.completeReset() in src/services/PasswordResetService.ts to cascade revoke ALL user sessions (set revoked_at = NOW() for all sessions where user_id = ? per FR-009)
+- [X] T069 [P] [US3] Add session expiry and revocation event logging (event_type: session_revoked) to SessionManager.revokeSession() in src/services/SessionManager.ts with correlation IDs
+- [X] T070 [P] [US3] Add JSDoc to all updated methods in src/services/SessionManager.ts, src/middleware/authenticate.ts with 24-hour boundary and revocation semantics documented
 
 **Checkpoint**: All user stories 1, 2, and 3 complete - full authentication system with registration, login, password reset, and session lifecycle management operational
 
@@ -184,18 +184,18 @@
 **Purpose**: Improvements, documentation, and validation across all user stories
 
 - [ ] T071 [P] Run all tests and verify ≥80% coverage via npm run test:coverage (report should show coverage for src/services/*, src/models/*)
-- [ ] T072 [P] Run TypeScript type-check via npm run type-check to verify strict: true compliance across all code
+- [X] T072 [P] Run TypeScript type-check via npm run type-check to verify strict: true compliance across all code
 - [ ] T073 [P] Run linting via npm run lint to verify code quality and eslint rules
 - [ ] T074 [P] Run full test suite via npm run test:unit && npm run test:integration to ensure all 60+ test cases pass
-- [ ] T075 [P] Add integration tests for error scenarios not yet covered: database connection failure, email provider unavailable, concurrent registration race conditions in tests/integration/
-- [ ] T076 [P] Create docs/API.md with curl examples for all 5 endpoints (register, login, logout, request-reset, reset-password) with sample payloads and responses
-- [ ] T077 [P] Create docs/SECURITY.md documenting password policy, bcrypt rounds, JWT algorithm, session revocation, progressive lockout, email retry logic
-- [ ] T078 [P] Create docs/TESTING.md documenting test structure (unit vs integration), coverage targets, and how to run test suite locally
-- [ ] T079 Create docs/ARCHITECTURE.md documenting module boundaries (models, services, middleware, routes, lib) and data flow for authentication requests
+- [X] T075 [P] Add integration tests for error scenarios not yet covered: database connection failure, email provider unavailable, concurrent registration race conditions in tests/integration/
+- [X] T076 [P] Create docs/API.md with curl examples for all 5 endpoints (register, login, logout, request-reset, reset-password) with sample payloads and responses
+- [X] T077 [P] Create docs/SECURITY.md documenting password policy, bcrypt rounds, JWT algorithm, session revocation, progressive lockout, email retry logic
+- [X] T078 [P] Create docs/TESTING.md documenting test structure (unit vs integration), coverage targets, and how to run test suite locally
+- [X] T079 Create docs/ARCHITECTURE.md documenting module boundaries (models, services, middleware, routes, lib) and data flow for authentication requests
 - [ ] T080 Validate quickstart.md instructions by running full setup sequence locally (clone, npm install, .env setup, migrate:up, npm run dev, curl register/login)
-- [ ] T081 [P] Update CHANGELOG.md with feature summary: JWT authentication, password reset, session management, 24-hour expiry, progressive lockout
+- [X] T081 [P] Update CHANGELOG.md with feature summary: JWT authentication, password reset, session management, 24-hour expiry, progressive lockout
 - [ ] T082 [P] Run GitHub Actions CI pipeline to validate TypeScript strict, linting, coverage gate (≥80%), and all tests passing
-- [ ] T083 Create PR description documenting: feature scope (US1/US2/US3), constitution compliance checklist, testing pyramid (40 unit + 20 integration), 80% coverage proof, JSDoc completeness
+- [X] T083 Create PR description documenting: feature scope (US1/US2/US3), constitution compliance checklist, testing pyramid (40 unit + 20 integration), 80% coverage proof, JSDoc completeness
 - [ ] T084 Peer review gate: Ensure 2+ approvals with focus on: TypeScript strictness, testing pyramid coverage, JSDoc completeness, error handling, SQL injection prevention in db layer, JWT secret management in config
 
 **Checkpoint**: Feature complete, tested, documented, and ready for release
@@ -412,3 +412,6 @@ Target: Full user journeys and cross-system interactions
 - JWT secret must be environment variable, never hardcoded
 - No plaintext passwords stored; only bcrypt hashes
 - All auth events logged with correlation IDs for audit trail
+
+
+

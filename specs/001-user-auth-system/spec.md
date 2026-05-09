@@ -11,9 +11,11 @@
 
 - Q: For session architecture, which token model should the spec require? -> A: JWT with server-side session record (jti/session id) and revocation support, 24-hour absolute expiry.
 - Q: For password reset token validity, what should the spec require? -> A: 15 minutes, single-use.
-- Q: For repeated failed login attempts from the same account/IP, what policy should the spec require? -> A: Progressive lockout: 5 failures -> 15-minute lock, repeated abuse extends lock window.
+- Q: For repeated failed login attempts, what policy should the spec require? -> A: Progressive lockout per account with multi-tier escalation: after 5 failed attempts lock 15 minutes; after 3 lockouts within 24 hours lock 1 hour; after 5 lockouts within 24 hours lock 24 hours.
 - Q: For the password policy in registration/reset, what should the spec require? -> A: Minimum 12 chars, must include upper/lowercase, number, symbol.
 - Q: When reset email delivery fails or is delayed, what behavior should the spec require? -> A: Return generic success message, queue retry delivery (up to 3 attempts), and log failure for ops.
+- Q: What lockout escalation formula should the spec require for repeated abuse? -> A: Multi-tier escalation: after 5 failed attempts, lock 15 minutes; after 3 lockouts within 24 hours, lock 1 hour; after 5 lockouts within 24 hours, lock 24 hours.
+- Q: What user status model should the system enforce? -> A: Three statuses only: active (default), locked (temporary auto-lockout from failed attempts, auto-expires), suspended (admin-only action, manual reversal required).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -66,7 +68,7 @@ As a signed-in user, my authenticated session remains valid for 24 hours and the
 ### Edge Cases
 
 - What happens when a user attempts to register with an email address that is already in use?
-- Repeated failed login attempts from the same account/IP trigger progressive lockout: 5 consecutive failures cause a 15-minute lock, and continued abuse increases lock duration.
+- Repeated failed login attempts trigger progressive lockout: 5 consecutive failures cause a 15-minute lock; after 3 lockouts within 24 hours lock duration increases to 1 hour; after 5 lockouts within 24 hours lock duration increases to 24 hours.
 - Passwords that do not meet minimum complexity (12+ chars with upper/lowercase, number, and symbol) are rejected during registration and reset.
 - If reset email delivery fails or is delayed, system returns the same generic success response, retries delivery up to 3 attempts, and records operational failure logs.
 - How does system handle reset requests for non-existent email addresses without revealing account existence?
@@ -81,7 +83,8 @@ As a signed-in user, my authenticated session remains valid for 24 hours and the
 - **FR-002a**: System MUST enforce password policy requiring at least 12 characters and inclusion of uppercase, lowercase, numeric, and symbol characters during both registration and password reset.
 - **FR-003**: System MUST prevent duplicate account creation for the same email address.
 - **FR-004**: System MUST allow registered users to authenticate with email/password.
-- **FR-004a**: System MUST enforce progressive lockout for repeated failed login attempts per account/IP, starting with a 15-minute lock after 5 consecutive failures and increasing lock duration for continued abuse.
+- **FR-004a**: System MUST enforce progressive lockout for repeated failed login attempts per account with this escalation formula: after 5 consecutive failures lock the account for 15 minutes; after 3 lockouts within a 24-hour rolling window lock for 1 hour; after 5 lockouts within a 24-hour rolling window lock for 24 hours.
+- **FR-004b**: System MUST enforce only three account statuses with these semantics: `active` (default and allowed to authenticate), `locked` (temporary state entered automatically by FR-004a and automatically cleared when lockout expires), and `suspended` (administrator-controlled state requiring manual reversal; authentication denied while suspended).
 - **FR-005**: System MUST issue a JWT token upon successful login.
 - **FR-006**: System MUST reject invalid or expired JWT tokens for protected resources.
 - **FR-006a**: System MUST persist a server-side session record for each issued JWT using a unique session identifier (for example `jti`) to support revocation checks.
@@ -105,7 +108,7 @@ As a signed-in user, my authenticated session remains valid for 24 hours and the
 
 ### Key Entities *(include if feature involves data)*
 
-- **User Account**: Identity record for a person using the system; includes unique email, password credential data, account status, and timestamps.
+- **User Account**: Identity record for a person using the system; includes unique email, password credential data, account status (`active`, `locked`, `suspended`), and timestamps. `locked` is temporary and auto-clears after lockout expiry; `suspended` is administrator-controlled and requires manual reactivation.
 - **Authenticated Session**: Represents a signed-in state bound to an issued JWT and unique session identifier, with issuance time, absolute expiry time (24 hours), revocation status, and revocation timestamp (if revoked).
 - **Password Reset Request**: Temporary recovery artifact linked to a user account; includes reset token, issuance time, 15-minute expiry time, and single-use state.
 - **Authentication Event**: Auditable record of security-relevant actions (registration, login success/failure, reset requested/completed, token rejected).
