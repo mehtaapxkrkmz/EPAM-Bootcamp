@@ -1,0 +1,23 @@
+{
+  "testRunner": "jest",
+  "jest": {
+    "configFile": "jest.stryker.config.js"
+  },
+  "reporters": ["html", "json", "clear-text"],
+  "concurrency": 4,
+  "timeoutMS": 5000,
+  "timeoutFactor": 1.25,
+  "thresholds": {
+    "high": 75,
+    "low": 60,
+    "break": 75
+  },
+  "mutate": ["src/services/**/*.ts", "src/models/**/*.ts"],
+  "ignoreStatic": false,
+  "disableTypeChecks": "tests/**/*.ts",
+  "tsconfigFile": "tsconfig.stryker.json",
+  "htmlReporter": {
+    "fileName": "reports/stryker/report.html"
+  },
+  "logLevel": "info"
+}
